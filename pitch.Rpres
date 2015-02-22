@@ -1,0 +1,63 @@
+
+Baby Names: Popularity Explorer
+========================================================
+transition: linear
+author: Zachary Cross
+date: Feb 2015
+
+```{r, echo=FALSE, results='hide'}
+library(rCharts)
+```
+
+Background
+========================================================
+
+<small>Since 1998, the SSA has compiled a data set that summarizes the names given to children in the U.S.  I haved created a tool to let people explore this dataset as a way to explore naming trends from the past.  Due to the large number of names used every year, the data was first filtered to only include the 20 most popular names, by gender, from 1960-2013.</small>
+
+```{r, echo=F}
+all_names <- read.csv("shiny_app/all_names.csv")[, c("name", "gender", "count", "year", "rank")]
+head(all_names)
+```
+
+Names by Count
+========================================================
+The first interactive element of the app allows users to select multiple names and then view how many children were given those names over time.  Example output:
+
+```{r, echo=FALSE, results = "asis", comment = NA, tidy = F}
+df <- subset(all_names, (name %in% c("Michael", "Thomas", "Zachary", "Brandon")))
+df$name <- as.factor(df$name)
+p <- hPlot(count ~ year, data=df, group="name", type="line",
+           title="Baby Names by Year (USA)")
+p$yAxis(title = list(enabled = T, text = "Number of babies w/ name"))
+p$xAxis(title = list(enabled = T, text = "Year"))
+p$show(cdn = TRUE)
+```
+
+
+Names by Rank
+========================================================
+
+<small>The second interactive element of the app allows users to select a range of years from 1960-2013.  The app will then plot the rankings of each top-20 name as time changes.  This allows users to explore which names retain popularity (e.g. 'Michael') while others spike and then disappear.</small>
+
+```{r, echo=FALSE, results = "asis", comment = NA, tidy = F}
+df <- subset(all_names, (gender=="F") & (year >= 1970) & (year <= 1990))
+df$name <- as.factor(df$name)
+p <- hPlot(rank ~ year, data=df, group="name", type="line",
+           title="Rank of Baby Names by Year (USA)")
+p$yAxis(title = list(enabled = T, text = "Rank of name"),
+                reversed = T,
+                min = 1,
+                max = 20)
+p$xAxis(title = list(enabled = T, text = "Year"))
+p$show(cdn = TRUE)
+```
+
+Summary
+========================================================
+
+* Slides made with RStudio's Presenter
+* App made with [ShinyApps](http://www.shinyapps.io/) + [rCharts](http://rcharts.io/)
+* Interactive version, visit [Baby Names](http://balladeer.shinyapps.io/baby_names/)
+* [GitHub repo](https://github.com/balladeer/coursera_data_products_shiny_app)
+* Data from the [SSA](http://www.ssa.gov/oact/babynames/background.html) and [data.gov](http://catalog.data.gov/dataset/baby-names-from-social-security-card-applications-national-level-data).
+
