@@ -3,6 +3,8 @@
 
 ## More info / Notes
 
+While this app uses only name and gender information, the SSA does record other pieces of information (such as state of birth).
+
 I limited the names to the top-20 most popular due to memory constraints; the file containing counts and ranks for all names from 1880 to 2013 was nearly 60MB, which was a bit too large for Shiny to handle gracefully.
 
 You can find more background information on the Baby Names data set at [this link](http://www.ssa.gov/oact/babynames/background.html), including some known caveats (e.g. data before 1934 is known to be incomplete, names such as 'Baby' and 'Unknown' are not filtered, etc).
