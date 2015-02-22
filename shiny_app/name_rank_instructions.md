@@ -1,4 +1,4 @@
-### Controls for the second chart
+### Controls for the by-rank chart
 
 To the right, you will find the controls for the second graph: a gender selection option and a date-range selection.
 

@@ -1,4 +1,4 @@
-### Controls for the first chart
+### Controls for the by-count chart
 
 To the right, you will find the controls for the first graph: a gender selection option and a name-selection box.
 
