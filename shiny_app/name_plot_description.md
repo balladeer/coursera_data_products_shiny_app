@@ -1,0 +1,3 @@
+This plot shows the number of babies born with the names selected.  A data point on this graph means that, for the year that the data point falls on, the selected name was in the 20 most popular names for new babies of the current gender.
+
+Most names will show a rise in popularity, followed by a decline that ends with the name leaving the top 20.  Some names, however, show up in the top 20 in many different sets of years (e.g. 'Anthony' for boys.)

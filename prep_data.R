@@ -36,5 +36,5 @@ for(i in yob_files){
 }
 
 full_df <- rbind(females, males)
-write.csv(full_df, "all_names.csv")
+write.csv(full_df, "shiny_app/all_names.csv")
 
