@@ -1,10 +1,4 @@
-
-# This is the user-interface definition of a Shiny web application.
-# You can find out more about building applications with Shiny here:
-#
-# http://shiny.rstudio.com
-#
-
+library(rCharts)
 library(shiny)
 
 shinyUI(fluidPage(
@@ -15,16 +9,29 @@ shinyUI(fluidPage(
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-      selectizeInput(
-          'name_list', 'Choose names to follow', choices = unique_names, #as.character(names_df[1:20, "name"]),
-          multiple = TRUE
-      )
+        # Gender to explore
+        radioButtons("gender_choice", label = h3("Gender"),
+                     choices = list("Male" = "M", "Female" = "F"),
+                     selected = "M"),
+
+        # Select year range to plot
+        sliderInput("years", "Year Range:",
+                    min = 1960, max = 2013, value = c(1960, 2000), sep="", step=1),
+
+        # Select names to plot
+#         selectizeInput(
+#           'name_list', 'Choose names to follow', choices = unique_names, #as.character(names_df[1:20, "name"]),
+#           multiple = TRUE
+#         )
+        uiOutput("name_select_ui")
     ),
 
     #
     mainPanel(
-      plotOutput("distPlot"),
-      verbatimTextOutput('out_names')
+      showOutput("name_plot", "highcharts"),
+      #verbatimTextOutput('out_names'),
+      #verbatimTextOutput('num_names')
+      dataTableOutput('names_table')
     )
   )
 ))
