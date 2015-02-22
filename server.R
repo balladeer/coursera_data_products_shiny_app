@@ -7,17 +7,16 @@
 
 library(shiny)
 
+names_df <- read.csv("all_names.csv")
+names_df$name <- as.character(names_df$name)
+
+males <- subset(names_df, gender=="M")
+females <- subset(names_df, gender=="F")
+
+unique_names <- sort(unique(names_df$name))
+
 shinyServer(function(input, output) {
 
-  output$distPlot <- renderPlot({
-
-    # generate bins based on input$bins from ui.R
-    x    <- faithful[, 2]
-    bins <- seq(min(x), max(x), length.out = input$bins + 1)
-
-    # draw the histogram with the specified number of bins
-    hist(x, breaks = bins, col = 'darkgray', border = 'white')
-
-  })
+  output$out_names <- renderPrint(input$name_list)
 
 })

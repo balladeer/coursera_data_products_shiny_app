@@ -10,21 +10,21 @@ library(shiny)
 shinyUI(fluidPage(
 
   # Application title
-  titlePanel("Old Faithful Geyser Data"),
+  titlePanel("United States Baby Names by year"),
 
   # Sidebar with a slider input for number of bins
   sidebarLayout(
     sidebarPanel(
-      sliderInput("bins",
-                  "Number of bins:",
-                  min = 1,
-                  max = 50,
-                  value = 30)
+      selectizeInput(
+          'name_list', 'Choose names to follow', choices = unique_names, #as.character(names_df[1:20, "name"]),
+          multiple = TRUE
+      )
     ),
 
-    # Show a plot of the generated distribution
+    #
     mainPanel(
-      plotOutput("distPlot")
+      plotOutput("distPlot"),
+      verbatimTextOutput('out_names')
     )
   )
 ))
