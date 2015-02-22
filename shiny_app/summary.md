@@ -13,6 +13,6 @@ You can find the code that I used to convert the original zip file into the data
 
 Finally, I have included a data table (below) that you can use to look through the data itself, if you so choose.
 
-If you have any feedback or comment, feel free to let me know at zachary.t.cross@gmail.com.
+If you have any feedback or comments, feel free to let me know at zachary.t.cross@gmail.com.
 
 ----------
